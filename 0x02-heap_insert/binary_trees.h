@@ -28,5 +28,10 @@ void binary_tree_print(const binary_tree_t *);
 
 /* tasks prototypes */
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
+heap_t *heap_insert(heap_t **root, int value);
+int binary_tree_is_perfect(const binary_tree_t *tree);
+int binary_tree_balance(const binary_tree_t *tree);
+size_t binary_tree_height(const binary_tree_t *tree);
+size_t binary_tree_size(const binary_tree_t *tree);
 
 #endif /* _BINARY_TREES_H_ */
