@@ -1,7 +1,7 @@
-#ifndef _BINARY_TREES_H_
-#define _BINARY_TREES_H_
+#ifndef BINARY_TREES_H
+#define BINARY_TREES_H
 
-#include <stddef.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 /**
@@ -12,26 +12,33 @@
  * @left: Pointer to the left child node
  * @right: Pointer to the right child node
  */
-typedef struct binary_tree_s
+struct binary_tree_s
 {
 	int n;
 	struct binary_tree_s *parent;
 	struct binary_tree_s *left;
 	struct binary_tree_s *right;
-} binary_tree_t;
+};
 
-/* Max Binary Heap data structure */
+/* Binary Tree */
+typedef struct binary_tree_s binary_tree_t;
+
+/* Max Binary Heap */
 typedef struct binary_tree_s heap_t;
 
-/* print the binary tree */
+/* prints binary tree */
 void binary_tree_print(const binary_tree_t *);
 
-/* tasks prototypes */
+/* creates a binary tree node */
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
-heap_t *heap_insert(heap_t **root, int value);
-int binary_tree_is_perfect(const binary_tree_t *tree);
-int binary_tree_balance(const binary_tree_t *tree);
-size_t binary_tree_height(const binary_tree_t *tree);
-size_t binary_tree_size(const binary_tree_t *tree);
 
-#endif /* _BINARY_TREES_H_ */
+/* inserts a value into a Max Binary Heap */
+heap_t *heap_insert(heap_t **root, int value);
+/* height of the tree */
+size_t binary_tree_height(heap_t *root);
+/* finds space for insertion */
+heap_t *find_space(heap_t *root, size_t level);
+/* swaps inserted node with parent */
+heap_t *swap_child(heap_t **root, heap_t *new_node);
+
+#endif /* BINARY_TREES_H */

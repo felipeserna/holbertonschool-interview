@@ -1,108 +1,126 @@
 #include "binary_trees.h"
 
 /**
-* heap_insert - inserts a value into a Max Binary Heap
-* @root: double pointer to the root node of the Heap
-* @value: value stored in the node to be inserted
-* Return: pointer to the inserted node, or NULL on failure
-*/
+ * heap_insert - inserts a value into a Max Binary Heap
+ * @root: double pointer to the root node of the Heap
+ * @value: value to store in the inserted node
+ * Return: pointer to the inserted node, or NULL on failure
+ */
 heap_t *heap_insert(heap_t **root, int value)
 {
-	heap_t *new_node = NULL;
+	size_t level = 0, height = 0;
+	heap_t *space = NULL, *new_node = NULL;
 
-	new_node = binary_tree_node(NULL, value);
-
-	if (!new_node)
+	if (!root)
 		return (NULL);
-
 	if (!(*root))
 	{
+		new_node = binary_tree_node(*root, value);
 		*root = new_node;
 		return (new_node);
 	}
+	height = binary_tree_height(*root);
 
-	return (new_node);	
-	/*
-	if (binary_tree_is_perfect(root) == 1)
-		heap_insert(root->left, value);*/
-}
-/**
- * binary_tree_is_perfect - checks if a binary tree is perfect
- * @tree: pointer to the root node of the tree to check
- * Return: If tree is NULL, your function must return 0
- */
-int binary_tree_is_perfect(const binary_tree_t *tree)
-{
-	if (!tree)
-		return (0);
-
-	if (binary_tree_balance(tree->left) == 0 &&
-			binary_tree_balance(tree->right) == 0)
+	while (level < height)
 	{
-		if (binary_tree_size(tree->left) == binary_tree_size(tree->right))
-			return (1);
+		space = find_space(*root, level);
+		if (space)
+			break;
+		level++;
 	}
-	return (0);
-}
-/**
- * binary_tree_balance - measures the balance factor of a binary tree
- * @tree: pointer to the root node of the tree to measure the balance factor
- * Return: If tree is NULL, return 0
- */
-int binary_tree_balance(const binary_tree_t *tree)
-{
-	int left_height = 0, right_height = 0, balance_f = 0;
-
-	if (!tree)
-		return (0);
-	if (tree->left)
-		left_height = 1 + binary_tree_height(tree->left);
-	if (tree->right)
-		right_height = 1 + binary_tree_height(tree->right);
-	balance_f = left_height - right_height;
-
-	return (balance_f);
-}
-/**
- * binary_tree_height - measures the height of a binary tree
- * @tree: pointer to the root node of the tree to measure the height.
- * Return: If tree is NULL, your function must return 0
- */
-size_t binary_tree_height(const binary_tree_t *tree)
-{
-	size_t height_left = 0, height_right = 0;
-
-	if (!tree)
-		return (0);
-
-	if (tree->left != NULL)
-		height_left = 1 + binary_tree_height(tree->left);
-
-	if (tree->right != NULL)
-		height_right = 1 + binary_tree_height(tree->right);
-
-	if (height_left >= height_right)
-		return (height_left);
+	new_node = binary_tree_node(space, value);
+	if (!space->left)
+		space->left = new_node;
 	else
-		return (height_right);
+		space->right = new_node;
+	while (new_node->parent && new_node->n > new_node->parent->n)
+	{
+		new_node = swap_child(root, new_node);
+	}
+	return (new_node);
 }
+
 /**
- * binary_tree_size - measures the size of a binary tree
- * @tree: pointer to the root node of the tree to measure the size
- * Return: Size of the tree. If tree is NULL, return 0.
+ * binary_tree_height - height of a binary tree
+ * that is level-order traversal
+ * @root: pointer to the root node of the tree
+ * Return: height of the tree
  */
-size_t binary_tree_size(const binary_tree_t *tree)
+size_t binary_tree_height(heap_t *root)
 {
-	size_t size = 1;
-
-	if (!tree)
+	if (!root)
 		return (0);
+	return (1 + binary_tree_height(root->left));
+}
 
-	if (tree->left != NULL)
-		size = size + binary_tree_size(tree->left);
+/**
+ * find_space - finds space through level-order traversal
+ * @root: pointer to the root node
+ * @level: current level
+ * Return: space for new node, or NULL if it has two children
+ */
+heap_t *find_space(heap_t *root, size_t level)
+{
+	heap_t *space = NULL;
 
-	if (tree->right != NULL)
-		size = size + binary_tree_size(tree->right);
+	if (!root)
+		return (NULL);
+	if (level == 0 && !(root->right))
+		return (root);
+	else if (level == 0)
+		return (NULL);
+	space = find_space(root->left, level - 1);
+	if (space)
+		return (space);
+	space = find_space(root->right, level - 1);
+	return (space);
+}
 
-	return (size);
+/**
+ * swap_child - swaps the new node with its parent
+ * @root: double pointer to the root node
+ * @new_node: new node
+ * Return: pointer to new node after swap
+ */
+heap_t *swap_child(heap_t **root, heap_t *new_node)
+{
+	int left = 0;
+	heap_t *tmp = new_node->parent, *tmp_r = tmp->right, *tmp_l = tmp->left;
+
+	if (new_node->parent->left == new_node)
+		left = 1;
+	new_node->parent->right = new_node->right;
+	if (new_node->right)
+		new_node->right->parent = new_node->parent;
+	new_node->parent->left = new_node->left;
+	if (new_node->left)
+		new_node->left->parent = new_node->parent;
+	if (left)
+	{
+		new_node->right = tmp_r;
+		if (tmp_r)
+			tmp_r->parent = new_node;
+	}
+	else
+	{
+		new_node->left = tmp_l;
+		if (tmp_l)
+			tmp_l->parent = new_node;
+	}
+	new_node->parent = tmp->parent;
+	if (tmp->parent)
+	{
+		if (tmp->parent->left == tmp)
+			tmp->parent->left = new_node;
+		else
+			tmp->parent->right = new_node;
+	}
+	else
+		*root = new_node;
+	if (left)
+		new_node->left = tmp;
+	else
+		new_node->right = tmp;
+	tmp->parent = new_node;
+	return (new_node);
 }
