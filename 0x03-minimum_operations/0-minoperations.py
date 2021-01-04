@@ -20,7 +20,7 @@ def minOperations(n):
     while H < n:
         if n % H == 0:
             copy_all += 1
-            H_copied += 1
+            H_copied += H
         paste += 1
         operations = copy_all + paste
         H += H_copied
