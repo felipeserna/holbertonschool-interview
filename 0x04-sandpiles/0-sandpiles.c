@@ -6,10 +6,9 @@
  */
 static void print_grid(int grid[3][3])
 {
-	int x = 0;
-	int y;
+	int x, y;
 
-	while (x < 3)
+	for (x = 0; x < 3; x++)
 	{
 		for (y = 0; y < 3; y++)
 		{
@@ -18,7 +17,6 @@ static void print_grid(int grid[3][3])
 			printf("%d", grid[x][y]);
 		}
 		printf("\n");
-		x++;
 	}
 }
 /**
@@ -28,18 +26,15 @@ static void print_grid(int grid[3][3])
  */
 int is_stable(int grid[3][3])
 {
-	int x = 0;
-	int y = 0;
+	int x, y;
 
-	while (x < 3)
+	for (x = 0; x < 3; x++)
 	{
-		while (y < 3)
+		for (y = 0; y < 3; y++)
 		{
 			if (grid[x][y] > 3)
 				return (0);
-			y++;
 		}
-		x++;
 	}
 	return (1);
 }
@@ -51,10 +46,9 @@ int is_stable(int grid[3][3])
  */
 void sandpiles_simple_sum(int grid1[3][3], int grid2[3][3])
 {
-	int x = 0;
-	int y, c = 0;
+	int x, y, c = 0;
 
-	while (x < 3)
+	for (x = 0; x < 3; x++)
 	{
 		for (y = 0; y < 3; y++)
 		{
@@ -62,7 +56,6 @@ void sandpiles_simple_sum(int grid1[3][3], int grid2[3][3])
 			grid2[x][y] = c;
 			grid1[x][y] = c;
 		}
-		x++;
 	}
 }
 /**
