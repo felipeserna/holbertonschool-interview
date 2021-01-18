@@ -5,6 +5,7 @@
 
 ## Tasks
 0. Linked list palindrome
+
 **Technical interview preparation:**
 
 * You are not allowed to google anything
