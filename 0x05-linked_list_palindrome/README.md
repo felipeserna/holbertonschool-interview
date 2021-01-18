@@ -10,6 +10,7 @@
 
 * You are not allowed to google anything
 * Whiteboard first
+
 Write a function in C that checks if a singly linked list is a palindrome.
 
 * Prototype: `int is_palindrome(listint_t **head);`
