@@ -7,5 +7,15 @@
 */
 int is_palindrome(unsigned long n)
 {
+	int reverse = 0;
+	int copy = n;
+	int last;
 
+	while (n > 0)
+	{
+		last = n % 10;
+		reverse = reverse * 10 + last;
+		n /= 10;
+	}
+	return (copy == reverse ? 1 : 0);
 }
