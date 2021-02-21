@@ -8,4 +8,8 @@ def validUTF8(data):
     """
     Return: True if data is a valid UTF-8 encoding, else return False
     """
-    pass
+    try:
+        bytes(number & 0xFF for number in data).decode()
+        return True
+    except UnicodeDecodeError:
+        return False
