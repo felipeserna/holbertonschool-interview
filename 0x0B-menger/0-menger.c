@@ -8,4 +8,7 @@ void menger(int level)
 {
 	if (level < 0)
 		return;
+
+	if (level == 0)
+		printf("#\n");
 }
