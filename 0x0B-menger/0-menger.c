@@ -6,5 +6,6 @@
 */
 void menger(int level)
 {
-	
+	if (level < 0)
+		return;
 }
