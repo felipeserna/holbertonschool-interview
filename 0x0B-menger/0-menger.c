@@ -19,9 +19,26 @@ void menger(int level)
 		{
 			for (j = 0; j < size; j++)
 			{
-				printf("#");
+				printf("%c", returner(j, i));
 			}
 			printf("\n");
 		}
 	}
+}
+/**
+* returner - finds which character to return
+* @col: column
+* @row: row
+* Return: '#' or ' '
+*/
+char returner(int col, int row)
+{
+	while (col != 0 && row != 0)
+	{
+		if (col % 3 == 1 && row % 3 == 1)
+			return (' ');
+		col = col / 3;
+		row = row / 3;
+	}
+	return ('#');
 }

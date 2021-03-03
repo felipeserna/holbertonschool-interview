@@ -6,5 +6,6 @@
 #include <math.h>
 
 void menger(int level);
+char returner(int col, int row);
 
 #endif /* MENGER_H */
