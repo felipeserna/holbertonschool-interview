@@ -19,11 +19,7 @@ void menger(int level)
 		{
 			for (j = 0; j < size; j++)
 			{
-				if ((i == 1 && j == 1))
-					printf(" ");
-
-				else
-					printf("#");
+				printf("#");
 			}
 			printf("\n");
 		}
