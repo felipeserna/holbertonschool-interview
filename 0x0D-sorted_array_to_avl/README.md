@@ -1,8 +1,8 @@
 # 0x0D. Array to AVL
 ## Specializations - Interview Preparation ― Algorithms
 ## avl
-## binary
-## trees c
+## binary trees
+## c
 
 ## Tasks
 0. AVL - From sorted array
