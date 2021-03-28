@@ -1,52 +1,90 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "search.h"
 /**
- * linear_skip - searches for a value in a sorted skip list of integers
- * @list: head list pointer
- * @value: value to search
+ * print_found - print message when found limits
+ * @index1: from this index
+ * @index2: to this index
+ * @last: know if the last one in express line
  *
- * Return: pointer to the value or NULL
-**/
-skiplist_t *linear_skip(skiplist_t *list, int value)
+ * Return: nothing
+ */
+void print_found(size_t index1, size_t index2, skiplist_t *last)
 {
-skiplist_t *right, *left;
-
-if (!list)
-return (NULL);
-right = list->express;
-left = list;
-while (right)
-{
-	printf("Value checked at index [%lu] = [%d]\n", right->index, right->n);
-if (right->n >= value || !right->express) /* right value check */
-{
-	if (!right->express && right->n < value) /* value within last interval */
+	if (last != NULL)
 	{
-		left = right;
-		while (right->next) /* find list's end */
-			right = right->next;
+		while (last->next != NULL)
+			last = last->next;
+		index2 = last->index;
+	}
+	printf("Value found between indexes [%lu] and [%lu]\n", index1, index2);
+}
+/**
+ * print_check - print message when check values
+ * @index: index where is comparing
+ * @value: value to compare
+ *
+ * Return: nothing
+ */
+void print_check(size_t index, int value)
+{
+	printf("Value checked at index [%lu] = [%i]\n", index, value);
+}
+/**
+ * find_one_by_one - check next by next
+ * @head: express line node
+ * @value: value to compare
+ *
+ * Return: node founded
+ */
+skiplist_t *find_one_by_one(skiplist_t *head, int value)
+{
+	skiplist_t *current = head;
+
+	if (head == NULL)
+		printf("n head nullll");
+	for (; current; current = current->next)
+	{
+		print_check(current->index, current->n);
+		if (current->n == value)
+			return (current);
 	}
 
-	printf("Value found between indexes [%lu] and [%lu]\n",
-	       left->index, right->index);
-	while (left) /* move one by one within the interval */
+	return (NULL);
+}
+/**
+ * linear_skip - found a value in skip list
+ * @head: express line node
+ * @value: value to compare
+ *
+ * Return: node founded
+ */
+skiplist_t *linear_skip(skiplist_t *head, int value)
+{
+	skiplist_t *current  = head, *next = NULL;
+
+	if (head == NULL)
+		return (NULL);
+
+	while (current != NULL)
 	{
-		printf("Value checked at index [%lu] = [%d]\n",
-		       left->index, left->n);
-		if (left->n == value) /* check for value */
-			return (left);
+		next = current->express;
+		if (next != NULL)
+		{
+			print_check(next->index, next->n);
+			if (next->n >= value)
+			{
+				print_found(current->index, next->index, NULL);
+				return (find_one_by_one(current, value));
+			}
 
-		if (left->n > value) /* value not found */
-			return (NULL);
+			if (next->express == NULL)
+			{
+				print_found(next->index, 0, next);
+				return (find_one_by_one(next, value));
+			}
+		}
 
-		left = left->next;
+		current = current->express;
 	}
-	break;
-}
-/* skip */
-left = right;
-right = right->express;
-}
-return (NULL);
+
+	return (NULL);
 }
