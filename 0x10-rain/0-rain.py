@@ -21,8 +21,8 @@ def rain(walls):
 
         # Max element on its right
         right = walls[i]
-        for j in range(i + 1, n):
-            right = max(right, walls[j])
+        for k in range(i + 1, n):
+            right = max(right, walls[k])
 
         water += min(left, right) - walls[i]
 
