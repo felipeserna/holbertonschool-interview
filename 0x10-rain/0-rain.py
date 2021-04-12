@@ -13,26 +13,38 @@ def rain(walls):
     if walls == []:
         return 0
 
+    n = len(walls)
+
+    """
+    left[i] contains height of tallest bar to the
+    left of ith bar including itself.
+    """
+    left = [0]*n
+
+    """
+    right[i] contains height of tallest bar to
+    the right of ith bar including itself.
+    """
+    right = [0]*n
+
     water = 0
 
-    left = walls[0]
-    right = walls[-1]
-    middle = 0
-    shortest = 0
+    # Storing values of tallest bar from first index till ith index.
+    left[0] = walls[0]
+    for i in range(1, n):
+        left[i] = max(left[i-1], walls[i])
 
-    if left >= right:
-        water += right * (len(walls) - 2)
-        shortest = right
+    # Storing values of tallest bar from last index till ith index.
+    right[n-1] = walls[n-1]
+    for i in range(n-2, -1, -1):
+        right[i] = max(right[i+1], walls[i])
 
-    else:
-        water += left * (len(walls) - 2)
-        shortest = left
-
-    for i in range(len(walls)):
-        if i != 0 and i != walls.index(walls[-1]):
-            if walls[i] < shortest:
-                middle += walls[i]
-
-    water -= middle
+    """
+    Storing the result by choosing the minimum of heights of tallest bar to
+    the right and left of the bar at current index and also subtracting the
+    value of current index to get water accumulated at current index.
+    """
+    for i in range(0, n):
+        water += min(left[i], right[i]) - walls[i]
 
     return water
