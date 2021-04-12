@@ -12,13 +12,3 @@ def rain(walls):
     """
     if walls == []:
         return 0
-
-    wet_walls = []
-
-    for wall in walls:
-        wet_walls.append(wall)
-
-    wet_walls.pop(0)
-    wet_walls.pop(-1)
-
-    return len(wet_walls)
