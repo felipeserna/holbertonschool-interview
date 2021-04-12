@@ -13,7 +13,7 @@ def rain(walls):
     n = len(walls)
     water = 0
 
-    for i in range(n):
+    for i in range(1, n - 1):
         # Max element on its left
         left = walls[i]
         for j in range(i):
