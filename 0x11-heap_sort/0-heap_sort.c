@@ -8,35 +8,34 @@
 */
 void swap(int *a, int *b, int *array, size_t n)
 {
-
-	int temp = *a;
+	int aux = *a;
 	*a = *b;
-	*b = temp;
+	*b = aux;
 	print_array(array, n);
 }
 /**
  * heapify - organizes the array into max heap
- * @arr: array
- * @n: actual size
- * @i: actual position
- * @size: total size
+ * @arr: array to heapify
+ * @n: size of the array
+ * @i: the index to check
+ * @size: size in size_t format
 */
 void heapify(int *arr, int n, int i, size_t size)
 {
-	int largest = i;
-	int left = 2 * i + 1;
-	int right = 2 * i + 2;
+	int biggest = i;
+	int left_child = 2 * i + 1;
+	int right_child = 2 * i + 2;
 
-	if (left < n && arr[left] > arr[largest])
-		largest = left;
+	if (left_child < n && arr[left_child] > arr[biggest])
+		biggest = left_child;
 
-	if (right < n && arr[right] > arr[largest])
-		largest = right;
+	if (right_child < n && arr[right_child] > arr[biggest])
+		biggest = right_child;
 
-	if (largest != i)
+	if (biggest != i)
 	{
-		swap(&arr[i], &arr[largest], arr, size);
-		heapify(arr, n, largest, size);
+		swap(&arr[i], &arr[biggest], arr, size);
+		heapify(arr, n, biggest, size);
 	}
 }
 /**
@@ -48,10 +47,9 @@ void heapify(int *arr, int n, int i, size_t size)
 */
 void heap_sort(int *array, size_t size)
 {
-
 	size_t i;
 
-	if (array == NULL)
+	if (!array)
 		return;
 
 	for (i = size / 2; i > 0; i--)
