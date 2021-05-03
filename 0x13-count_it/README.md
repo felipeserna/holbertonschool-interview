@@ -19,7 +19,7 @@ Requirements:
 * If `word_list` contains the same word (case-insensitive), the final count should be the sum of each duplicate (example below with `java`)
 * Results should be printed in descending order, by the count, and if the count is the same for separate keywords, they should then be sorted alphabetically (ascending, from A to Z). Words with no matches should be skipped and not printed. Words must be printed in lowercase.
 * Results are based on the number of times a keyword appears, not titles it appears in. `java java java` counts as 3 separate occurrences of `java`.
-* To make life easier, java. or java! or java_ should not count as java
+* To make life easier, `java.` or `java!` or `java_` should not count as `java`
 * If no posts match or the subreddit is invalid, print a newline.
 * NOTE: Invalid subreddits may return a redirect to search results. Ensure that you are NOT following redirects.
 
