@@ -7,12 +7,12 @@ and prints a sorted count of given keywords
 """
 
 
-from requests import request
+import requests as rq
 
 
 def generate_dicts(word_list):
     """
-    generate_dicts functions
+    creates dictionaries
     """
     count = {k: 0 for k in word_list}
     dup = {}
@@ -25,14 +25,14 @@ def generate_dicts(word_list):
 
 def count_words(subreddit, word_list, after="", count={}, dup={}, init=0):
     """
-    count_words function
+    Reddit API
     """
     if not init:
         count, dup = generate_dicts(word_list)
 
     url = "https://api.reddit.com/r/{}/hot?after={}".format(subreddit, after)
     headers = {"User-Agent": "Python3"}
-    response = request("GET", url, headers=headers).json()
+    response = rq.request("GET", url, headers=headers).json()
     try:
         data = response.get('data')
         top = data.get('children')
