@@ -131,6 +131,7 @@ alexa@ubuntu:~/0x17-find_the_loop$
 If you want to use source file instead of the `libloop.a` library, please use this file "lib.c (link on the Intranet)"
 
 And compile it with this command: `$ gcc -Wall -pedantic -Werror -Wextra 0-main.c 0-find_loop.c lib.c -o main`
+
 **Repo:**
 * GitHub repository: `holbertonschool-interview`
 * Directory: `0x17-find_the_loop`
