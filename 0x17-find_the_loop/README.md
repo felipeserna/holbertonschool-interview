@@ -47,7 +47,7 @@ Write a function that finds the loop in a linked list.
 * You are not allowed to use `malloc`, `free` or arrays
 * You can only declare a maximum of two variables in your function
 
-Note: In order to compile the main file, you are provided with a "static library". This library won’t be used during the correction; Its only purpose is for testing.
+Note: In order to compile the main file, you are provided with a "static library (link on the Intranet)". This library won’t be used during the correction; Its only purpose is for testing.
 ```
 alexa@ubuntu:~/0x17-find_the_loop$ cat 0-main.c 
 #include <stdlib.h>
@@ -128,7 +128,7 @@ alexa@ubuntu:~/0x17-find_the_loop$ ./main
 Loop starts at [0x1370030] 7
 alexa@ubuntu:~/0x17-find_the_loop$
 ```
-If you want to use source file instead of the `libloop.a` library, please use this file "lib.c"
+If you want to use source file instead of the `libloop.a` library, please use this file "lib.c (link on the Intranet)"
 
 And compile it with this command: `$ gcc -Wall -pedantic -Werror -Wextra 0-main.c 0-find_loop.c lib.c -o main`
 **Repo:**
