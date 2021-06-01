@@ -1,6 +1,8 @@
 #include "lists.h"
 /**
-* loop_start - finds where the loop starts
+* loop_start - finds where the loop starts.
+* https://www.codingninjas.com/blog/2020/09/09/
+* floyds-cycle-detection-algorithm/
 * @head: pointer at head of the singly linked list
 * @hare: pointer where hare met tortoise
 * Return: The address of the node where the loop starts
