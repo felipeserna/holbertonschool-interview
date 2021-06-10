@@ -50,14 +50,16 @@ void recursion(int *array, size_t size, int *tmp)
  */
 void merge_worker(int *array, int size, int middle, int *tmp)
 {
-	int i, j, k;
+	int i = 0;
+	int j = middle;
+	int k = 0;
 
 	printf("Merging...\n");
 	printf("[left]: ");
 	print_array(array, middle);
 	printf("[right]: ");
 	print_array(array + middle, size - middle);
-	for (i = 0, j = middle, k = 0; k < size; k++)
+	while (k < size)
 	{
 
 		if (j == size)
@@ -80,6 +82,7 @@ void merge_worker(int *array, int size, int middle, int *tmp)
 			tmp[k] = array[i];
 			i++;
 		}
+		k++;
 	}
 	for (i = 0; i < size; i++)
 	{
