@@ -26,7 +26,7 @@ void merge_sort(int *array, size_t size)
  * recursion - merge sort using recursion
  * @array: array to be sorted
  * @size: number of elements in the array
- * @tmp: work array
+ * @tmp: work array to hold information during merge
  * Return: nothing
  */
 void recursion(int *array, size_t size, int *tmp)
@@ -41,52 +41,52 @@ void recursion(int *array, size_t size, int *tmp)
 	merge_worker(array, size, middle, tmp);
 }
 /**
- * merge_worker - merge sort worker function
- * @array: array to be sorted
- * @size: number of elements in the array
+ * merge_worker - merge two arrays
+ * @array: array to merge
+ * @size: number of elements in the array to merge
  * @middle: Middle index
- * @tmp: work array
+ * @tmp: work array to hold information during merge
  * Return: nothing
  */
 void merge_worker(int *array, int size, int middle, int *tmp)
 {
-	int i = 0;
-	int j = middle;
-	int k = 0;
+	int left = 0;
+	int right = middle;
+	int index = 0;
 
 	printf("Merging...\n");
 	printf("[left]: ");
 	print_array(array, middle);
 	printf("[right]: ");
 	print_array(array + middle, size - middle);
-	while (k < size)
+	while (index < size)
 	{
 
-		if (j == size)
+		if (right == size)
 		{
-			tmp[k] = array[i];
-			i++;
+			tmp[index] = array[left];
+			left++;
 		}
-		else if (i == middle)
+		else if (left == middle)
 		{
-			tmp[k] = array[j];
-			j++;
+			tmp[index] = array[right];
+			right++;
 		}
-		else if (array[j] < array[i])
+		else if (array[right] < array[left])
 		{
-			tmp[k] = array[j];
-			j++;
+			tmp[index] = array[right];
+			right++;
 		}
 		else
 		{
-			tmp[k] = array[i];
-			i++;
+			tmp[index] = array[left];
+			left++;
 		}
-		k++;
+		index++;
 	}
-	for (i = 0; i < size; i++)
+	for (index = 0; index < size; index++)
 	{
-		array[i] = tmp[i];
+		array[index] = tmp[index];
 	}
 	printf("[Done]: ");
 	print_array(tmp, size);
