@@ -12,21 +12,21 @@ def makeChange(coins, total):
         * If total cannot be met by any number of coins you have, return -1.
     - Your solution’s runtime will be evaluated in this task.
     """
-    new_list = coins.copy()
-    fewest = 0
-
     if total <= 0:
-        return fewest
+        return 0
 
-    elif all(total % coin != 0 for coin in new_list):
+    length = len(coins)
+
+    optimized = [0 for _ in range(total + 1)]
+
+    for i in range(1, total + 1):
+        smallest = float("inf")
+        for j in range(length):
+            if (coins[j] <= i):
+                smallest = min(smallest, optimized[i - coins[j]])
+        optimized[i] = 1 + smallest
+
+    if type(optimized[total]) is not int:
         return -1
 
-    elif len(new_list) == 1 and total % new_list[0] == 0:
-        fewest = total // new_list[0]
-        return fewest
-
-    for coin in range(len(new_list)):
-        if total % new_list[coin] == 0:
-            fewest += total // new_list[coin]
-
-    return fewest
+    return optimized[total]
