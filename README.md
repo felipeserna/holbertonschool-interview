@@ -78,6 +78,8 @@ Min number of operations to reach 12 characters: 7
 $
 ```
 
+The most difficult challenges encountered are related to `C` interview problems, as they require a lot of ingenuity. I need to improve my understanding of pointers and some data structures. I also need to improve my experience with `JavaScript`. In `Python` I feel more confident than in other programming languages.
+
 ## Author:
 Felipe Serna <1509@holbertonschool.com>
 
