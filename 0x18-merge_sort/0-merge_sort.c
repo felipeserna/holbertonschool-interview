@@ -52,14 +52,14 @@ void merge_worker(int *array, int size, int middle, int *tmp)
 {
 	int left = 0;
 	int right = middle;
-	int index = 0;
+	int index;
 
 	printf("Merging...\n");
 	printf("[left]: ");
 	print_array(array, middle);
 	printf("[right]: ");
 	print_array(array + middle, size - middle);
-	while (index < size)
+	for (index = 0; index < size; index++)
 	{
 
 		if (right == size)
@@ -82,7 +82,6 @@ void merge_worker(int *array, int size, int middle, int *tmp)
 			tmp[index] = array[left];
 			left++;
 		}
-		index++;
 	}
 	for (index = 0; index < size; index++)
 	{
