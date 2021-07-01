@@ -1,7 +1,9 @@
 #ifndef LIST_H
 #define LIST_H
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* Data structure */
 /**
@@ -20,8 +22,11 @@ typedef struct List
 	struct List *next;
 } List;
 
-/* Given functions */
+/* Mandatory functions */
 List *add_node_end(List **list, char *str);
 List *add_node_begin(List **list, char *str);
+
+/* Auxiliary functions */
+List *create_node(char *str);
 
 #endif
