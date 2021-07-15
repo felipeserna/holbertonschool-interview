@@ -8,7 +8,11 @@ def island_perimeter(grid):
     """
     Returns the perimeter of the island described in 'grid'
     """
+    perimeter = 0
+
     if all(elem == 0 for sublist in grid for elem in sublist):
-        return 0
+        perimeter = 0
     else:
-        return 34
+        perimeter = 34
+
+    return perimeter
