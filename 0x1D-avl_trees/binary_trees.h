@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
+#include <limits.h>
 
 /* Basic Binary Tree */
 /**
@@ -35,5 +36,8 @@ binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
 
 /* Mandatory function */
 int binary_tree_is_avl(const binary_tree_t *tree);
+
+/* Auxiliary functions */
+int is_valid_avl(const binary_tree_t *tree, int min, int max, int *height);
 
 #endif
