@@ -35,14 +35,11 @@ def binomialCoeff(n, k):
 
 def factorial(n):
     """
-    Factorial of n
+    Returns: factorial of n
     """
-    factorial = 1
-
-    if n == 0:
-        return 1
-
+    if n > 1:
+        fact = n * factorial(n - 1)
     else:
-        for i in range(1, n + 1):
-            factorial = factorial * i
-    return factorial
+        fact = 1
+
+    return fact
