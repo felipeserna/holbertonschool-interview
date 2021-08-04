@@ -28,10 +28,21 @@ def binomialCoeff(n, k):
     """
     Returns binomial coefficient
     """
-    res = 1
-    if (k > n - k):
-        k = n - k
-    for i in range(k):
-        res = res * (n - i)
-        res = res // (i + 1)
-    return res
+    coeff = factorial(n) // (factorial(k) * factorial(n - k))
+
+    return coeff
+
+
+def factorial(n):
+    """
+    Factorial of n
+    """
+    factorial = 1
+
+    if n == 0:
+        return 1
+
+    else:
+        for i in range(1, n + 1):
+            factorial = factorial * i
+    return factorial
