@@ -25,6 +25,9 @@ def pascal_triangle(n):
 
 
 def binomialCoeff(n, k):
+    """
+    Returns binomial coefficient
+    """
     res = 1
     if (k > n - k):
         k = n - k
