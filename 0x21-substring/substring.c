@@ -14,13 +14,10 @@
 */
 int *find_substring(char const *s, char const **words, int nb_words, int *n)
 {
-	int *result;
-	int str_len = 0;
-	int word_len = 0;
-	int i;
-
+	int *result, str_len = 0, word_len = 0, i;
 	*n = 0;
-	if (!s || !words || !(*words) || nb_words == 0)
+
+	if (!words || !(*words) || nb_words == 0)
 		return (NULL);
 
 	for (i = 0; s[i] != '\0'; i++)
