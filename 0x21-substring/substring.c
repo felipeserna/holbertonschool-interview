@@ -58,7 +58,7 @@ int *find_substring(char const *s, char const **words, int nb_words, int *n)
 */
 int full_match(char const *s, char const **words, int nb_words, int word_len)
 {
-	int *done, done_len = 0, found = 0, match = 1, j, k, l, aint;
+	int *done, done_len = 0, found = 0, match = 1, j, k, l, not_l;
 
 	done = malloc(sizeof(int) * nb_words);
 
@@ -70,8 +70,8 @@ int full_match(char const *s, char const **words, int nb_words, int word_len)
 		found = 0;
 		for (l = 0; l < nb_words; l++)
 		{
-			aint = not_in(done, done_len, l);
-			if (aint && str_match((s + (k * word_len)), words[l]))
+			not_l = not_in(done, done_len, l);
+			if (not_l && str_match((s + (k * word_len)), words[l]))
 			{
 				done[done_len] = l;
 				done_len++;
@@ -89,11 +89,11 @@ int full_match(char const *s, char const **words, int nb_words, int word_len)
 	return (match);
 }
 /**
-* not_in - checks if 'q' in 'arr'
+* not_in - checks if 'l' in 'arr'
 * @arr: array of integers
 * @len: length of arr
 * @l: the value to check for
-* Return: 1 if 'q' not in 'arr', 0 otherwise
+* Return: 1 if 'l' not in 'arr', 0 otherwise
 */
 int not_in(int *arr, int len, int l)
 {
