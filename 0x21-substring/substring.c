@@ -62,18 +62,18 @@ int full_match(char const *s, char const **words, int nb_words, int word_len)
 
 	done = malloc(sizeof(int) * nb_words);
 
-	for (l = 0; l < nb_words; l++)
-		done[l] = -1;
-
 	for (j = 0; j < nb_words; j++)
+		done[j] = -1;
+
+	for (k = 0; k < nb_words; k++)
 	{
 		found = 0;
-		for (k = 0; k < nb_words; k++)
+		for (l = 0; l < nb_words; l++)
 		{
-			aint = not_in(done, done_len, k);
-			if (aint && str_match((s + (j * word_len)), words[k]))
+			aint = not_in(done, done_len, l);
+			if (aint && str_match((s + (k * word_len)), words[l]))
 			{
-				done[done_len] = k;
+				done[done_len] = l;
 				done_len++;
 				found = 1;
 				break;
