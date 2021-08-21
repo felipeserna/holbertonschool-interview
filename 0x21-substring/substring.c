@@ -92,16 +92,16 @@ int full_match(char const *s, char const **words, int nb_words, int word_len)
 * not_in - checks if 'q' in 'arr'
 * @arr: array of integers
 * @len: length of arr
-* @q: the value to check for
+* @l: the value to check for
 * Return: 1 if 'q' not in 'arr', 0 otherwise
 */
-int not_in(int *arr, int len, int q)
+int not_in(int *arr, int len, int l)
 {
 	int i = 0;
 
 	for (i = 0; i < len; i++)
 	{
-		if (arr[i] == q)
+		if (arr[i] == l)
 			return (0);
 	}
 	return (1);
